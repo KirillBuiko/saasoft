@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import AccountsHeader from "@/widgets/accounts/accounts-header/ui/AccountsHeader.vue";
-import AccountsTagsHint from "@/widgets/accounts/tags-hint/ui/AccountsTagsHint.vue";
-import AccountsList from "@/widgets/accounts/accounts-list/ui/AccountsList.vue";
+import {AccountsHeader} from "@/widgets/accounts/accounts-header";
+import {AccountsTagsHint} from "@/widgets/accounts/tags-hint";
+import {AccountsList} from "@/widgets/accounts/accounts-list";
 
 </script>
 
 <template>
-  <AccountsHeader/>
-  <AccountsTagsHint/>
-  <AccountsList/>
+  <div class="accounts-page">
+    <AccountsHeader/>
+    <AccountsTagsHint/>
+    <AccountsList/>
+  </div>
 </template>
 
 <style scoped lang="scss">
-
+.accounts-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 </style>

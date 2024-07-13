@@ -15,9 +15,12 @@ function onClick() {
 </script>
 
 <template>
-  <v-btn variant="outlined" @click="onClick"> - </v-btn>
+  <v-btn icon="mdi-trash-can-outline" variant="outlined" @click="onClick"/>
 </template>
 
 <style scoped lang="scss">
-
+.account-remove-button {
+  width: 20px;
+  padding: 0;
+}
 </style>

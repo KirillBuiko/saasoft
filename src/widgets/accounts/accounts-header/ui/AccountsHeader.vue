@@ -1,6 +1,5 @@
 <script setup lang="ts">
-
-import AccountAddButton from "@/features/add-account/ui/AccountAddButton.vue";
+import {AccountAddButton} from "@/features/add-account";
 </script>
 
 <template>
@@ -14,7 +13,7 @@ import AccountAddButton from "@/features/add-account/ui/AccountAddButton.vue";
 .accounts-header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  gap: 50px;
 }
 </style>

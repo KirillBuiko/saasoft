@@ -15,10 +15,10 @@ const tagsString = computed(() => {
   return props.account.tags.map((info) => info.text).join(";");
 })
 
-const typeStrings = [{
+const typeItems = [{
   title: "Локальная",
   value: AccountType.LOCAL
-},{
+}, {
   title: "LDAP",
   value: AccountType.LDAP
 }]
@@ -35,13 +35,22 @@ function onAccountTagsUpdate(value: string) {
 
 <template>
   <v-text-field :model-value="tagsString"
+                variant="outlined"
+                placeholder="Значение"
                 @update:model-value="onAccountTagsUpdate"/>
   <v-select :model-value="props.account.type"
+            variant="outlined"
             @update:model-value="(value) => onValueUpdate('type', value)"
-            :items="typeStrings"/>
-  <v-text-field :model-value="props.account.login"
+            :items="typeItems"/>
+  <v-text-field class="account-login"
+                variant="outlined"
+                placeholder="Значение"
+                :model-value="props.account.login"
                 @update:model-value="(value) => onValueUpdate('login', value)"/>
   <v-text-field v-if="props.account.password !== null"
+                variant="outlined"
+                type="password"
+                placeholder="Значение"
                 :model-value="props.account.password"
                 @update:model-value="(value) => onValueUpdate('password', value)"/>
 </template>

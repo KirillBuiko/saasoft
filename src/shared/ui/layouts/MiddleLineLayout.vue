@@ -21,7 +21,6 @@
   align-items: center;
   padding-inline: 100px;
   padding-block: 20px;
-  background: gray;
 
   .layout-middle {
     display: flex;
@@ -31,6 +30,8 @@
     padding-inline: 40px;
     padding-block: 40px;
     background: white;
+    border: 1px solid black;
+    border-radius: 5px;
     flex: 1 auto;
   }
 }
