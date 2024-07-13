@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Account} from "@/entities/account/model/types";
+import type {Account, SelectItem} from "@/entities/account/model/types";
 import {AccountType} from "@/entities/account/model/types";
 import {reactive, watch} from "vue";
 
@@ -20,18 +20,10 @@ const inputBuffer = reactive<Record<keyof Account, string | null>>({
   tags: tagsToString(props.account.tags)
 })
 
-watch(props.account, (V) => {
-  Object.assign(inputBuffer, V);
-  inputBuffer.tags = tagsToString(props.account.tags);
+watch(props, (V) => {
+  Object.assign(inputBuffer, V.account);
+  inputBuffer.tags = tagsToString(V.account.tags);
 })
-
-const typeItems = [{
-  title: "Локальная",
-  value: AccountType.LOCAL
-}, {
-  title: "LDAP",
-  value: AccountType.LDAP
-}]
 
 function onSubmit(key: keyof Account) {
   const value = inputBuffer[key];
@@ -43,38 +35,46 @@ function onSubmit(key: keyof Account) {
     emits("value-update", key, value);
   }
 }
+
+const fieldsDescriptor: {
+  [ind in keyof Account]:
+    { class: string } & (
+    { type: "input", placeholder: string } |
+    { type: "select", items: SelectItem[] })
+} = {
+  tags: {class: "account-tags", type: "input", placeholder: "Значение"},
+  type: {
+    class: "account-type",
+    type: "select",
+    items: [
+      {title: "Локальная", value: AccountType.LOCAL},
+      {title: "LDAP", value: AccountType.LDAP}
+    ]
+  },
+  login: {class: "account-login", type: "input", placeholder: "Значение"},
+  password: {class: "account-password", type: "input", placeholder: "Значение"}
+}
 </script>
 
 <template>
-<!-- TODO: refactor with input declarations (now meaningless) -->
-  <v-text-field v-model="inputBuffer.tags"
-                :rules="inputRules.tags.rules"
-                :counter="inputRules.tags?.length as number"
-                @blur="onSubmit('tags')"
-                variant="outlined"
-                placeholder="Значение"
-                validate-on="blur"/>
-  <v-select v-model="inputBuffer.type"
-            variant="outlined"
-            @update:model-value="onSubmit('type')"
-            :items="typeItems"/>
-  <v-text-field class="account-login"
-                v-model="inputBuffer.login"
-                :rules="inputRules.login.rules"
-                :counter="inputRules.login?.length as number"
-                @blur="onSubmit('login')"
-                variant="outlined"
-                placeholder="Значение"
-                validate-on="blur"/>
-  <v-text-field v-if="props.account.password !== null"
-                v-model="inputBuffer.password"
-                :rules="inputRules.password.rules"
-                :counter="inputRules.password?.length as number"
-                @blur="onSubmit('password')"
-                variant="outlined"
-                type="password"
-                placeholder="Значение"
-                validate-on="blur" />
+  <template v-for="(value, key) in fieldsDescriptor" :key="key">
+    <v-select v-if="value.type == 'select'"
+              :class="{[value.class]: true}"
+              v-model="inputBuffer[key]"
+              variant="outlined"
+              @update:model-value="onSubmit('type')"
+              :items="value.items"/>
+    <v-text-field v-if="value.type == 'input' && inputBuffer[key] !== null"
+                  :class="{[value.class]: true}"
+                  v-model="inputBuffer[key]"
+                  :rules="inputRules[key].rules"
+                  :counter="inputRules[key].length as number"
+                  @blur="onSubmit(key)"
+                  variant="outlined"
+                  :type="key == 'password' ? 'password' : 'text'"
+                  :placeholder="value.placeholder"
+                  validate-on="blur"/>
+  </template>
 </template>
 
 <style scoped lang="scss">

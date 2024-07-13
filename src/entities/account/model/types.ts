@@ -23,3 +23,8 @@ export interface LDAPAccount extends BaseAccount {
 }
 
 export type Account = LocalAccount | LDAPAccount;
+
+export type SelectItem = {
+    title: string,
+    value: string
+}
