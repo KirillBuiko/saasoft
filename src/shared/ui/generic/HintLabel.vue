@@ -18,9 +18,9 @@ import HintIcon from "@/shared/ui/icons/HintIcon.vue";
   flex-direction: row;
   align-items: center;
   gap: 15px;
-  padding: 8px;
+  padding-inline: 8px;
   border: 1px solid #333;
-  border-radius: 15px;
+  border-radius: 20px;
   background: #fcfcfc;
 
   .icon {
