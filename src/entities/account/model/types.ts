@@ -24,7 +24,17 @@ export interface LDAPAccount extends BaseAccount {
 
 export type Account = LocalAccount | LDAPAccount;
 
+
+// TODO: it can be replaced in shared with project scaling
+
 export type SelectItem = {
     title: string,
     value: string
+}
+
+export type FormDescriptor<K> = {
+    [ind in keyof K]:
+    { class: string } & (
+    { type: "input", placeholder: string } |
+    { type: "select", items: SelectItem[] })
 }

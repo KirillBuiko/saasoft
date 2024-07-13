@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Account, SelectItem} from "@/entities/account/model/types";
+import type {Account, FormDescriptor} from "@/entities/account/model/types";
 import {AccountType} from "@/entities/account/model/types";
 import {reactive, watch} from "vue";
 
@@ -36,12 +36,7 @@ function onSubmit(key: keyof Account) {
   }
 }
 
-const fieldsDescriptor: {
-  [ind in keyof Account]:
-    { class: string } & (
-    { type: "input", placeholder: string } |
-    { type: "select", items: SelectItem[] })
-} = {
+const fieldsDescriptor: FormDescriptor<Account> = {
   tags: {class: "account-tags", type: "input", placeholder: "Значение"},
   type: {
     class: "account-type",
