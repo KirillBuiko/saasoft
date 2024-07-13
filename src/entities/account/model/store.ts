@@ -9,17 +9,18 @@ export const useAccountsStore = defineStore("accounts-store", () => {
             listenToStorageChanges: false
         });
 
-    if (accounts.value.length == 0) {
-        addAccount({
-            login: "123",
-            tags: [
-                {text: "qwerty"},
-                {text: "yuiop"}
-            ],
-            type: AccountType.LOCAL,
-            password: "password1"
-        });
-    }
+    // debug staff
+    // if (accounts.value.length == 0) {
+    //     addAccount({
+    //         login: "123",
+    //         tags: [
+    //             {text: "qwerty"},
+    //             {text: "yuiop"}
+    //         ],
+    //         type: AccountType.LOCAL,
+    //         password: "password1"
+    //     });
+    // }
 
     function getAccounts() {
         return accounts.value;

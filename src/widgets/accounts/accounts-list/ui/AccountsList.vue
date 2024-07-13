@@ -16,7 +16,6 @@ const titles = [
   "Пароль",
   ""
 ]
-const columnsCount = titles.length;
 
 </script>
 
@@ -41,17 +40,18 @@ const columnsCount = titles.length;
 .accounts-grid {
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  gap: 10px;
+  overflow-x: auto;
 
   .accounts-grid__header {
-    height: 50px;
+    height: 30px;
 
     h4 {
       display: flex;
       justify-content: flex-start;
       align-items: center;
       padding-inline: 5px;
-      color: #999;
+      color: #888;
       height: 100%;
     }
   }

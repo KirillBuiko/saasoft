@@ -3,8 +3,8 @@ export type TagInfo = {
 }
 
 export enum AccountType {
-    LOCAL,
-    LDAP
+    LOCAL = "Local",
+    LDAP = "LDAP"
 }
 
 export interface BaseAccount {
