@@ -60,6 +60,12 @@ const titles = [
     display: grid;
     gap: 15px;
     grid-template-columns: minmax(200px, 2fr) minmax(100px, 1fr) minmax(200px, 1.7fr) minmax(200px, 1.5fr) 70px;
+
+    & > * {
+      width: 100%;
+      height: 100%;
+      justify-self: flex-end;
+    }
   }
 
   .accounts-grid__row.is-ldap .account-login {
