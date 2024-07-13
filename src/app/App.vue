@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import AccountsPage from "@/pages/accounts/ui/AccountsPage.vue";
+import MiddleLineLayout from "@/shared/ui/layouts/MiddleLineLayout.vue";
 </script>
 
 <template>
   <!-- Simple app without routing :/ -->
-  <AccountsPage/>
+  <MiddleLineLayout>
+    <AccountsPage/>
+  </MiddleLineLayout>
 </template>
 
 <style scoped lang="scss">

@@ -48,5 +48,11 @@ export const useAccountsStore = defineStore("accounts-store", () => {
         }
     }
 
-    return {accounts, getAccounts, addEmptyAccount, addAccount, setValue}
+    function removeAccount(idx: number) {
+        if (accounts.value[idx]) {
+            accounts.value.splice(idx, 1);
+        }
+    }
+
+    return {accounts, getAccounts, addEmptyAccount, addAccount, setValue, removeAccount}
 })

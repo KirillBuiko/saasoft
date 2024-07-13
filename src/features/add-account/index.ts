@@ -1,3 +1,3 @@
-import AddAccountButton from "@/features/add-account/ui/AddAccountButton.vue";
+import AccountAddButton from "@/features/add-account/ui/AccountAddButton.vue";
 
-export {AddAccountButton}
+export {AccountAddButton}
